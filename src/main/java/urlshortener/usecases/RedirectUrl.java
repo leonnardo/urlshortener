@@ -2,6 +2,7 @@ package urlshortener.usecases;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import urlshortener.domain.ShortUrl;
 import urlshortener.gateway.mongo.UrlRepository;
 
 /**
@@ -15,5 +16,9 @@ public class RedirectUrl {
     @Autowired
     public RedirectUrl(UrlRepository repository) {
         this.repository = repository;
+    }
+
+    public ShortUrl execute(String shortUrl) {
+        return repository.findByShortUrl(shortUrl);
     }
 }
